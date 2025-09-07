@@ -1,0 +1,156 @@
+[tool.poetry]
+name = "recosamp"
+version = "0.1.0"
+description = "A collection of sampling methods for neural-network based recommender systems"
+authors = ["Aleksei Tsyplov <tsyploff.alexei@yandex.ru>"]
+packages = [{ include = "recosamp", from = "recosamp" }]
+
+# Dependencies groups
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+numpy = "1.26.4"
+pandas = "2.3.1"
+polars = "1.21.0"
+scikit-learn = "1.7.1"
+scipy = "1.16.1"
+seaborn = "0.13.2"
+torch = "2.6.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "7.4.3"
+pytest-cov = "3.0.0"
+pytest-mock = "3.11.1"
+pytest-asyncio = "0.21.0"
+pyyaml = "6.0.2"
+
+[tool.poetry.group.formatters.dependencies]
+ruff = "0.7.0"
+
+[tool.poetry.group.linters.dependencies]
+ruff = "0.7.0"
+pylint = "3.3.1"
+mypy = "1.11.2"
+
+[tool.poetry.group.jupyter.dependencies]
+ipykernel = "6.15.3"
+ipywidgets = "7.6.5"
+
+# Tests
+
+[tool.pytest.ini_options]
+addopts = [
+    "-q", "-ra", "-s", "-v",
+    "--cov=recosamp",
+    "--cov-report=xml:coverage.xml",
+    "--basetemp=tmp",
+]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["recosamp"]
+omit = ["tests/*", "*/__init__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "# pragma: no cover",
+    "def __repr__",
+    "def __str__",
+    "raise NotImplementedError",
+    "if __name__"
+]
+show_missing = true
+fail_under = 80
+
+# Linter
+
+[tool.pylint.master]
+ignore-paths = [
+    "^.venv/.*$",
+    "^.venv/lib/.*$",
+]
+
+[tool.pylint.format]
+max-line-length = 120
+
+[tool.pylint.BASIC]
+max-module-lines = 300
+output-format = "colorized"
+max-args = 10
+max-nested-blocks = 4
+max-branches = 25
+max-statements = 50
+max-attributes = 15
+max-public-methods = 15
+min-similarity-lines = 6
+
+[tool.pylint."MESSAGES CONTROL"]
+disable = [
+    "C0114",  # No module docstring
+    "R0903",  # Too few public methods
+    "R0914",  # Too many local variables
+    "R0917",  # Too many positional arguments
+]
+
+# MyPy
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+ignore_missing_imports = false
+no_implicit_optional = true
+exclude = [".venv", ".venv/lib", "venv"]
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = "polars.*"
+ignore_errors = true
+follow_imports = "skip"
+
+[[tool.mypy.overrides]]
+module = "torch.*"
+ignore_errors = true
+follow_imports = "skip"
+
+# Ruff
+
+[tool.ruff]
+exclude = [
+    "*.ipynb",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    "_pypackages__",
+    "build",
+    "ocs",
+    "ite-packages",
+    "env",
+]
+line-length = 120
+
+[tool.ruff.format]
+preview = true
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "SIM"]
+fixable = ["E", "F", "I"]
+ignore = ["B008", "B905", "SIM300"]
+pydocstyle.convention = "google"
+pycodestyle.max-line-length = 120
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2
