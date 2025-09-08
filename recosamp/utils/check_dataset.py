@@ -32,9 +32,6 @@ def check_dataset(
         |-- user_id_column: pl.Int64
         |-- item_id_column: pl.Int64 | pl.Array(pl.Int64, n)
 
-        probabilities (Tensor): probabilities to sample items
-        to each other as a negative examples.
-
         user_id_column (str): user IDs column in DataFrame
         item_id_column (str): item IDs column in DataFrame
 

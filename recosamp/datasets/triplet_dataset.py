@@ -126,7 +126,7 @@ class TripletDataset(Dataset[UserPositiveNegativeTriplet]):
         datasets, removes duplicates if any.
         """
         gathered_interactions = (
-            interactions
+            interactions.select(user_id_column, item_id_column)
             if is_sequence_like(interactions)
             else interactions.group_by(user_id_column).agg(pl.col(item_id_column).explode())
         )
