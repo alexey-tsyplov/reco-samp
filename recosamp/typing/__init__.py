@@ -1,12 +1,5 @@
-from typing import NamedTuple
-
-from torch import Tensor
-
-
-class UserPositiveNegativeTriplet(NamedTuple):
-    user_id: Tensor
-    positive_item_id: Tensor
-    negative_item_id: Tensor
+from .named_tuples import UserPositiveNegativeTriplet
+from .type_aliases import IntTensorDict, StringTensorDict
 
 
-__all__ = ["UserPositiveNegativeTriplet"]
+__all__ = ["IntTensorDict", "StringTensorDict", "UserPositiveNegativeTriplet"]
