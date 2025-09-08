@@ -2,6 +2,7 @@ from typing import NamedTuple
 
 from torch import Tensor
 
+
 class UserPositiveNegativeTriplet(NamedTuple):
     """
     Represent container for triplet
@@ -21,6 +22,7 @@ class UserPositiveNegativeTriplet(NamedTuple):
     In torch.utils.data.DataLoader collate_fn prepends
     batch_size dimensionality in each case.
     """
+
     user_id: Tensor
     positive_item_id: Tensor
     negative_item_id: Tensor

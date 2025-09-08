@@ -47,7 +47,7 @@ def check_dataset(
     num_users = interactions.n_unique(user_id_column)
     num_items = interactions.n_unique(item_id_column)
     if is_sequence_like(interactions[item_id_column]):
-        assert interactions.height == num_users, f"In sequence datasets each user shall appear only once"
+        assert interactions.height == num_users, "In sequence datasets each user shall appear only once"
 
     assert (
         interactions[user_id_column].min() == 1 and interactions[user_id_column].max() >= num_users

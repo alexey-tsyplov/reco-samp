@@ -12,6 +12,7 @@ class UniformTripletDataset(TripletDataset):
     Represents TripletDataset with equal probabilities
     to sample items to each other as negative example.
     """
+
     def __init__(
         self,
         interactions: DataFrame,

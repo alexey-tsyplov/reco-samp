@@ -34,6 +34,7 @@ class TripletDataset(Dataset[UserPositiveNegativeTriplet]):
         all positive interactions by user ID. Each user may have
         a different number of such interactions.
     """
+
     def __init__(
         self,
         interactions: DataFrame,
