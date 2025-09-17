@@ -1,5 +1,6 @@
+from .dataclasses import ImportanceData
 from .named_tuples import UserPositiveNegativeTriplet
 from .type_aliases import IntTensorDict, StringTensorDict
 
 
-__all__ = ["IntTensorDict", "StringTensorDict", "UserPositiveNegativeTriplet"]
+__all__ = ["ImportanceData", "IntTensorDict", "StringTensorDict", "UserPositiveNegativeTriplet"]

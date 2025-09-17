@@ -1,20 +1,11 @@
-from dataclasses import dataclass
 from typing import Literal, Optional
 
 import torch
 from polars import DataFrame
 from torch import Generator, Tensor
 
-from recosamp.typing import UserPositiveNegativeTriplet
+from recosamp.typing import ImportanceData, UserPositiveNegativeTriplet
 from .triplet_dataset import TripletDataset
-
-
-@dataclass
-class ImportanceData:
-    user_importance: Tensor
-    item_importance: Tensor
-    user_importance_threshold: float
-    item_importance_threshold: float
 
 
 class ImportanceFilteredTripletDataset(TripletDataset):
