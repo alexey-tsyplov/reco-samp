@@ -3,7 +3,6 @@ name = "recosamp"
 version = "0.1.0"
 description = "A collection of sampling methods for neural-network based recommender systems"
 authors = ["Aleksei Tsyplov <tsyploff.alexei@yandex.ru>"]
-packages = [{ include = "recosamp", from = "recosamp" }]
 
 # Dependencies groups
 
@@ -16,6 +15,7 @@ scikit-learn = "1.7.1"
 scipy = "1.16.1"
 seaborn = "0.13.2"
 torch = "2.6.0"
+pytorch-lightning = "2.5.1"
 
 [tool.poetry.group.test.dependencies]
 pytest = "7.4.3"
