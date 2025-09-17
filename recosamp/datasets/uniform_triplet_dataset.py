@@ -5,6 +5,7 @@ from polars import DataFrame
 from torch import Generator
 
 from recosamp.utils import is_sequence_like
+
 from .triplet_dataset import TripletDataset
 
 

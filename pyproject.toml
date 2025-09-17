@@ -3,7 +3,6 @@ name = "recosamp"
 version = "0.1.0"
 description = "A collection of sampling methods for neural-network based recommender systems"
 authors = ["Aleksei Tsyplov <tsyploff.alexei@yandex.ru>"]
-packages = [{ include = "recosamp", from = "recosamp" }]
 
 # Dependencies groups
 

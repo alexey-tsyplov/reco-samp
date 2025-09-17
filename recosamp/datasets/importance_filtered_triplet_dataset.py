@@ -5,6 +5,7 @@ from polars import DataFrame
 from torch import Generator, Tensor
 
 from recosamp.typing import ImportanceData, UserPositiveNegativeTriplet
+
 from .triplet_dataset import TripletDataset
 
 
@@ -60,3 +61,5 @@ class ImportanceFilteredTripletDataset(TripletDataset):
                 self.PADDING_IDX,
                 ids,
             )
+
+        raise ValueError(f"mode must be either user or item, got {mode}")

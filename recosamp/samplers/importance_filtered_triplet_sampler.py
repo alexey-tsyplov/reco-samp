@@ -2,7 +2,7 @@ import math
 from typing import Iterator, Optional
 
 import torch
-from torch.utils.data import Sampler, DistributedSampler
+from torch.utils.data import DistributedSampler, Sampler
 
 from recosamp.datasets import TripletDataset
 from recosamp.typing import ImportanceData
