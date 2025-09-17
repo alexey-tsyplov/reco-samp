@@ -35,6 +35,8 @@ class TripletDataset(Dataset[UserPositiveNegativeTriplet]):
         a different number of such interactions.
     """
 
+    PADDING_IDX: int = 0
+
     def __init__(
         self,
         interactions: DataFrame,
@@ -65,6 +67,7 @@ class TripletDataset(Dataset[UserPositiveNegativeTriplet]):
         """
         check_dataset(interactions, user_id_column, item_id_column)
         self.length = interactions.height
+        self.is_sequence_like = is_sequence_like(interactions[item_id_column])
         self.user_id = torch.from_numpy(interactions[user_id_column].to_numpy()).long()
         self.item_id = torch.from_numpy(interactions[item_id_column].to_numpy()).long()
         self.num_negatives = num_negatives
@@ -110,8 +113,6 @@ class TripletDataset(Dataset[UserPositiveNegativeTriplet]):
 
         probabilities = self.probabilities[positive_item_id - 1].clone()
         probabilities[..., positives] = 0.0
-        probabilities /= probabilities.sum(dim=-1, keepdim=True)
-
         return torch.multinomial(probabilities, self.num_negatives, replacement=False, generator=self.generator) + 1
 
     @staticmethod
